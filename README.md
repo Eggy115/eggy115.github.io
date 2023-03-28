@@ -4,3 +4,5 @@ Eggy115's website. You can go to it [here](https://eggy115.github.io/index.html)
 - Uh blog maybe
 - Tools I might make
 - Downloads for software
+## License
+GPL
