@@ -61,6 +61,7 @@ main {
     border: 1px solid #444;
     border-radius: 5px;
     margin-bottom: 20px; 
+    text-align: justify;
 }
 .profile-picture {
     max-width: 150px;
@@ -193,4 +194,3 @@ a:hover {
     color: #4caf50;
     animation: changeHue 10s infinite alternate;
   }
-  
