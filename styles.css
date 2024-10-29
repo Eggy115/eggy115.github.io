@@ -1,0 +1,197 @@
+/* Style the custom scrollbar for Webkit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #1a1a1a ; /* Track color */
+}
+::-webkit-scrollbar-thumb {
+    background: #444; /* Thumb color */
+    border-radius: 5px; /* Rounded corners */
+}
+/* Style the custom scrollbar for Firefox */
+/* Note that the scrollbar in Firefox can only be styled using the scrollbar-width property, which is not widely supported yet (as of my knowledge cutoff in September 2021) */
+/* This example might not work in all versions of Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #444 #1a1a1a;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a; /* Dark background color */
+    color: #ffffff; /* Light text color */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make the body take up at least the full viewport height */
+}
+header, footer{
+    background-color: #4caf50; /* Green header and footer background color */
+    padding: 10px;
+    color: #ffffff;
+    text-align: center;
+    animation: changeHue 10s infinite alternate; /* Apply the hue animation */
+}
+@keyframes changeHue {
+    0% {
+        filter: hue-rotate(0deg); /* Starting hue rotation value */
+    }
+    100% {
+        filter: hue-rotate(360deg); /* Ending hue rotation value (360deg for a full cycle) */
+    }
+}
+main {
+    display: flex; /* Use flexbox to create a two-column layout */
+    max-width: 1050px;
+    margin: 20px auto;
+    flex-wrap: wrap; /* Allow elements to wrap within the flex container */
+    justify-content: space-between; /* Align items at the edges */
+}
+.profile {
+    flex: 1 0 250px; /* Allow the profile to grow, but not shrink below 250px */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; 
+}
+.profile-inner,
+.blog {
+    padding: 20px;
+    background-color: #292929; /* Darker content background color */
+    border: 1px solid #444;
+    border-radius: 5px;
+    margin-bottom: 20px; 
+}
+.profile-picture {
+    max-width: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+}
+.info {
+    text-align: justify;
+}
+.info p {
+    margin: 5px 0;
+}
+.blogs-container {
+    flex: 1 0 600px; /* Allow the blogs to grow, but not shrink below 600px */
+    max-width: 600px; /* Limit the width of the blog container */
+    margin-left: 20px; /* Add some space between the profile and blogs */
+    display: flex;
+    flex-direction: column;
+}
+.blog {
+    background-color: #292929; /* Use the same background color as the profile */
+    color: white;
+    padding: 20px;
+    text-align: justify;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+.button {
+    background-color: #292929; /* Use the same background color as the profile */
+    color: white;
+    padding: 10px;
+    text-align: justify;
+    margin-bottom: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
+.button:hover {
+    color: #4caf50; /* Set the link text color to yellow when hovering */
+    animation: changeHue 10s infinite alternate;
+}
+#length {
+    background-color: #292929; /* Use the same background color as the profile */
+    color: white;
+    padding: 10px;
+    text-align: justify;
+    margin-bottom: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
+#length:hover {
+    color: #4caf50; /* Set the link text color to yellow when hovering */
+    animation: changeHue 10s infinite alternate;
+}
+
+    /* Style the number input to hide the spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #4caf50; /* Green footer background color */
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block; /* Initially show the footer */
+    transition: transform 0.3s ease-in-out; /* Add smooth transition when showing/hiding */
+}
+.footer-hidden {
+    transform: translateY(100%); /* Move the footer outside the viewport */
+}
+a {
+    color: white; /* Set the link text color to white */
+    text-decoration: none; /* Remove the default underline */
+}
+        
+/* Apply styles when hovering over the link */
+a:hover {
+    color: #4caf50; /* Set the link text color to yellow when hovering */
+    animation: changeHue 10s infinite alternate;
+}
+.bottom-box {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    animation: changeHue 10s infinite alternate;
+}    
+.exception-link {
+    color: white; /* Change the color for the exception links */
+}
+.exception-link:hover {
+    color: white; /* Change the color for hovered exception links */ /* Add underline for hovered exception links */
+    animation: none; /* Remove animation for hovered exception links */
+} 
+/* styles.css */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: none;
+    font-size: 24px;
+    background-color: #292929;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  #scrollToTopBtn:hover {
+    background-color: #444444;
+    color: #4caf50;
+    animation: changeHue 10s infinite alternate;
+  }
+  
