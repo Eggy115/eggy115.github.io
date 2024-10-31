@@ -67,6 +67,7 @@ main {
     max-width: 150px;
     display: block;
     margin: 0 auto 20px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5);
 }
 .info {
     text-align: justify;
@@ -129,6 +130,7 @@ input[type="number"]::-webkit-outer-spin-button {
 /* For Firefox */
 input[type="number"] {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 footer {
