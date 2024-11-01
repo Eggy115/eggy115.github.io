@@ -8,7 +8,16 @@
     <link rel="icon" href="images/256.png" type="image/png">
     <title>muggleton.xyz</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show the content if JavaScript is enabled
+            document.getElementById('js-content').style.display = 'block';
+        });
+    </script>    
     <style>
+        .js-enabled {
+            display: none; /* Initially hide the content */
+        }
         .blogs-container {
             flex: 1 0 1000px; /* Allow the blogs to grow, but not shrink below 600px */
             max-width: 1000px; /* Limit the width of the blog container */
@@ -16,70 +25,69 @@
             flex-direction: column;
         }          
   /* Style for the mood buttons */
-  .mood-button {
-    background-color: #292929; /* Use the same background color as the profile */
-    color: white;
-    padding: 10px;
-    text-align: justify;
-    margin-bottom: 10px;
-    border: 1px solid #444;
-    border-radius: 5px;
-}
+        .mood-button {
+            background-color: #292929; /* Use the same background color as the profile */
+            color: white;
+            padding: 10px;
+            text-align: justify;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
 
-.mood-button:hover {
-    color: #4caf50; /* Set the link text color to yellow when hovering */
-    animation: changeHue 10s infinite alternate;
-}
+        .mood-button:hover {
+            color: #4caf50; /* Set the link text color to yellow when hovering */
+            animation: changeHue 10s infinite alternate;
+        }
 
-  /* Style for the quote containers */
-  .quote-container {
-    display: none;
-    background-color: #292929; /* Use the same background color as the profile */
-    color: white;
-    padding: 10px;
-    text-align: justify;
-    margin-bottom: 10px;
-    border: 1px solid #444;
-    border-radius: 5px;
-  }
+        /* Style for the quote containers */
+        .quote-container {
+            display: none;
+            background-color: #292929; /* Use the same background color as the profile */
+            color: white;
+            padding: 10px;
+            text-align: justify;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
 
-  /* Style for the search box */
-  .search-box {
-        text-align: left;
-        margin-top: 20px;
-  }
-  .search-box:hover {
-    color: #4caf50; /* Set the link text color to yellow when hovering */
-    animation: changeHue 10s infinite alternate;
-  }
-  #searchInput {
-    background-color: #292929; /* Use the same background color as the profile */
-    color: white;
-    padding: 10px;
-    text-align: justify;
-    margin-bottom: 10px;
-    border: 1px solid #444;
-    border-radius: 5px;
-    width: 300px;
-}
+        .search-box {
+                text-align: left;
+                margin-top: 20px;
+        }
+        .search-box:hover {
+            color: #4caf50; /* Set the link text color to yellow when hovering */
+            animation: changeHue 10s infinite alternate;
+        }
+        #searchInput {
+            background-color: #292929; /* Use the same background color as the profile */
+            color: white;
+            padding: 10px;
+            text-align: justify;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            width: 300px;
+        }
 
-#searchInput:hover {
-    color: #4caf50; /* Set the link text color to yellow when hovering */
-    animation: changeHue 10s infinite alternate;
-}
+        #searchInput:hover {
+            color: #4caf50; /* Set the link text color to yellow when hovering */
+            animation: changeHue 10s infinite alternate;
+        }
 
-    /* Style the number input to hide the spinners */
-input[type="text"]::-webkit-inner-spin-button,
-input[type="text"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+            /* Style the number input to hide the spinners */
+        input[type="text"]::-webkit-inner-spin-button,
+        input[type="text"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
-/* For Firefox */
-input[type="text"] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-}
+        /* For Firefox */
+        input[type="text"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
     </style>
 </head>
 <body>
@@ -89,14 +97,29 @@ input[type="text"] {
     <main>
         <div class="blogs-container">
             <div class="blog">
-                <h2>Software Index</h2>
-               <p>Cool gangsta epic software made by some pretty cool people (and some not so cool people). Includes both FOSS and proprietary software.</p>
-               <p>Probably doesn't have viruses in it but I don't know so <b>use at your own risk</b> or something.</p>
-               <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search for websites...">
+              <h2>Software Index</h2>
+              <p>Cool gangsta epic software made by some pretty cool people (and some not so cool people). Includes both FOSS and proprietary software.</p>
+              <p>Please note that some of this software may contain <b>cringe</b>, including trackers and proprietary code. Probably doesn't have viruses in it but I don't know so <b>use at your own risk</b> or something.</p>
+              
+              <noscript><p><b>It looks like you don't have Javascript enabled, so this won't be quite as fancy.</b></p>
+              <p>Don't worry though, you're not missing anything. Just the ability to sort by category. Just use <code>CTRL + F</code> to search instead.</p></noscript>
+               
+               <noscript>
+                <style>
+                    /* Override the CSS when JavaScript is disabled */
+                    .quote-container {
+                        display: block !important;
+                    }
+                </style>
+               </noscript>
+
+               <div id="js-content" class="js-enabled">   
+                  <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search for software...">
                   </div>
                   
                   <!-- Mood buttons -->
+                
                   <div>
                     <button class="mood-button" data-mood="all">*</button>
                     <button class="mood-button" data-mood="none">-</button>
@@ -111,12 +134,12 @@ input[type="text"] {
                     <button class="mood-button" data-mood="windows">Windows</button>
                     
                   </div>
+                </div>
 
                   <div class="quote-container" data-moods="all art foss windows macos linux"><a href="https://krita.org/">
                     <h3>Krita</h3><p>FOSS image editing software, mainly for artists</p></a></div>
                   <div class="quote-container" data-moods="all art foss windows macos linux"><a href="https://www.gimp.org/">
                     <h3>GIMP</h3><p>GNU Image Manipulation Program. Mainly for image editing rather than art</p></a></div>   
-
                   <div class="quote-container" data-moods="all browsers android windows macos linux"><a href="https://brave.com/download/">
                     <h3>Brave</h3><p>Funny lion browser, comes with adblockers, AI, and crypto pre-installed. Based on chromium</p></a></div>
                   <div class="quote-container" data-moods="all browsers android based foss"><a href="https://www.bromite.org/">
@@ -152,456 +175,492 @@ input[type="text"] {
                   <div class="quote-container" data-moods="all browsers windows macos linux"><a href="https://www.waterfox.net/download">
                     <h3>Waterfox</h3><p>Firefox but more sensible starting options. Powered by Gecko. Runs at the speed of lights</p></a></div>                    
                   <div class="quote-container" data-moods="all windows macos linux"><a href="https://browser.yandex.com/">
-                    <h3>Yandex</h3><p>Probably associated with Yandex search engine (idk i didn't check)</p></a></div>      
+                    <h3>Yandex</h3><p>Probably associated with Yandex search engine (idk i didn't check)</p></a></div>  
 
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                                                                                   
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                    
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                    
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                                                                                   
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                    
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>  
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                    
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                    
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                    
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>  
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                    
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>
+                  <div class="quote-container" data-moods="all"><a href="https://">
+                    <h3></h3><p></p></a></div>                    
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                   
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>  
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                    
-                  <div class="quote-container" data-moods="all"><a href="">
+                  <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                                
-                    
+                </div>
             </div>            
             <!-- Add more blog posts as needed -->
-        </div>
+        
  
     </main>
     
