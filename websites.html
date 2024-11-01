@@ -8,7 +8,16 @@
     <link rel="icon" href="images/256.png" type="image/png">
     <title>muggleton.xyz</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show the content if JavaScript is enabled
+            document.getElementById('js-content').style.display = 'block';
+        });
+    </script>    
     <style>
+        .js-enabled {
+            display: none; /* Initially hide the content */
+        }
         .blogs-container {
             flex: 1 0 1000px; /* Allow the blogs to grow, but not shrink below 600px */
             max-width: 1000px; /* Limit the width of the blog container */
@@ -16,70 +25,69 @@
             flex-direction: column;
         }          
   /* Style for the mood buttons */
-  .mood-button {
-    background-color: #292929; /* Use the same background color as the profile */
-    color: white;
-    padding: 10px;
-    text-align: justify;
-    margin-bottom: 10px;
-    border: 1px solid #444;
-    border-radius: 5px;
-}
+        .mood-button {
+            background-color: #292929; /* Use the same background color as the profile */
+            color: white;
+            padding: 10px;
+            text-align: justify;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
 
-.mood-button:hover {
-    color: #4caf50; /* Set the link text color to yellow when hovering */
-    animation: changeHue 10s infinite alternate;
-}
+        .mood-button:hover {
+            color: #4caf50; /* Set the link text color to yellow when hovering */
+            animation: changeHue 10s infinite alternate;
+        }
 
-  /* Style for the quote containers */
-  .quote-container {
-    display: none;
-    background-color: #292929; /* Use the same background color as the profile */
-    color: white;
-    padding: 10px;
-    text-align: justify;
-    margin-bottom: 10px;
-    border: 1px solid #444;
-    border-radius: 5px;
-  }
+        /* Style for the quote containers */
+        .quote-container {
+            display: none;
+            background-color: #292929; /* Use the same background color as the profile */
+            color: white;
+            padding: 10px;
+            text-align: justify;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
 
-  /* Style for the search box */
-  .search-box {
-        text-align: left;
-        margin-top: 20px;
-  }
-  .search-box:hover {
-    color: #4caf50; /* Set the link text color to yellow when hovering */
-    animation: changeHue 10s infinite alternate;
-  }
-  #searchInput {
-    background-color: #292929; /* Use the same background color as the profile */
-    color: white;
-    padding: 10px;
-    text-align: justify;
-    margin-bottom: 10px;
-    border: 1px solid #444;
-    border-radius: 5px;
-    width: 300px;
-}
+        .search-box {
+                text-align: left;
+                margin-top: 20px;
+        }
+        .search-box:hover {
+            color: #4caf50; /* Set the link text color to yellow when hovering */
+            animation: changeHue 10s infinite alternate;
+        }
+        #searchInput {
+            background-color: #292929; /* Use the same background color as the profile */
+            color: white;
+            padding: 10px;
+            text-align: justify;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            width: 300px;
+        }
 
-#searchInput:hover {
-    color: #4caf50; /* Set the link text color to yellow when hovering */
-    animation: changeHue 10s infinite alternate;
-}
+        #searchInput:hover {
+            color: #4caf50; /* Set the link text color to yellow when hovering */
+            animation: changeHue 10s infinite alternate;
+        }
 
-    /* Style the number input to hide the spinners */
-input[type="text"]::-webkit-inner-spin-button,
-input[type="text"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+            /* Style the number input to hide the spinners */
+        input[type="text"]::-webkit-inner-spin-button,
+        input[type="text"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
-/* For Firefox */
-input[type="text"] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-}
+        /* For Firefox */
+        input[type="text"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
     </style>
 </head>
 <body>
@@ -91,13 +99,28 @@ input[type="text"] {
             <div class="blog">
                 <h2>Websites Index</h2>
                <p>Cool gangsta epic websites made by some pretty cool people (and some not so cool people). This is a list of based and not based websites. Mostly based ones though.</p>
-               <p>Websites probably all safe but maybe they changed ownership. I don't know so <b>use at your own risk</b> or something.</p>
-               <p>This includes <code>.onion</code> and <code>.i2p</code> links which can't be accessed using a normal browser</p>
-               <div class="search-box">
+               <p>Websites probably all safe but maybe they changed ownership. Some of these websites also contain <b>cringe</b> (e.g. trackers). Some of them are also pertaining to less-than-legal topics. I don't know so <b>use at your own risk</b> or something.</p>
+               <p>This includes <code>.onion</code> and <code>.i2p</code> links which can't be accessed using a normal browser. Please see my (they don't have to be mine) tutorials for TOR and I2P.</p>
+               
+               <noscript><p><b>It looks like you don't have Javascript enabled, so this won't be quite as fancy.</b></p>
+               <p>Don't worry though, you're not missing anything. Just the ability to sort by category. Just use <code>CTRL + F</code> to search instead.</p></noscript>
+               
+               <noscript>
+                <style>
+                    /* Override the CSS when JavaScript is disabled */
+                    .quote-container {
+                        display: block !important;
+                    }
+                </style>
+               </noscript>
+
+               <div id="js-content" class="js-enabled">   
+                  <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Search for websites...">
                   </div>
                   
                   <!-- Mood buttons -->
+                
                   <div>
                     <button class="mood-button" data-mood="all">*</button>
                     <button class="mood-button" data-mood="none">-</button>
@@ -184,6 +207,7 @@ input[type="text"] {
                     <button class="mood-button" data-mood="wikipedia">Wikipedias (and alternatives)</button>
                     
                   </div>
+                </div>
 
                   <div class="quote-container" data-moods="all based blogs education technology"><a href="https://muggleton.xyz">
                     <h3>muggleton.xyz</h3><p>The best website in the world</p></a></div>  
@@ -722,10 +746,10 @@ input[type="text"] {
                     <h3></h3><p></p></a></div>                    
                   <div class="quote-container" data-moods="all"><a href="https://">
                     <h3></h3><p></p></a></div>                                                                                                
-                    
+                </div>
             </div>            
             <!-- Add more blog posts as needed -->
-        </div>
+        
  
     </main>
     
