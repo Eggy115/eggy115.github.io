@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="muggleton.xyz">
+    <meta name="author" content="Oliver George Talbot Muggleton">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://muggleton.xyz/images/256.png" type="image/png">
+    <title>muggleton.xyz</title>
+    <link rel="stylesheet" href="https://muggleton.xyz/styles.css">
+    <base href="https://muggleton.xyz/">
+    <style>
+        main {
+            display: flex; /* Use flexbox to create a two-column layout */
+            max-width: 10000px;
+            margin: 20px auto;
+            flex-wrap: wrap; /* Allow elements to wrap within the flex container */
+            justify-content: space-between; /* Align items at the edges */
+        }
+        .profile {
+            margin-left: 20px; /* Add some space between the profile and blogs */
+            flex: 1 0 250px; /* Allow the profile to grow, but not shrink below 250px */
+            max-width: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+        .blogs-container {
+            flex: 1 0 600px; /* Allow the blogs to grow, but not shrink below 600px */
+            max-width: 1000px; /* Limit the width of the blog container */
+            display: flex;
+            flex-direction: column;
+        }      
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/index.html" class="exception-link"><span title="https://muggleton.xyz">muggleton.xyz</span></a></h1>
+    </header>
+    <main>
+        <div class="blogs-container">
+            <div class="blog">
+                <h2>The YouTube channel is back</h2>
+                <p>After much deliberation, I've decided to return the YouTube channel. This was a genuinely tough decision. However, I decided that the pros outweighed the cons. It does now mean that everyone I know will be able to bully me, but I'm willing to face those consequences.</p>
+                <p>You can see my channel <a href="https://www.youtube.com/@ogtmuggleton?sub_confirmation=1"><u>here</u></a> or just look up "Oliver George Talbot Muggleton" on YouTube.</p>
+            </div>
+            <!-- Add more blog posts as needed -->
+        </div>
+        <div class="profile">
+            <div class="blog">
+                <a href="i-made-a-website.html"><h2>I made a website</h2>
+                <p>So I've finally done it</p></a>
+            </div>            
+            <div class="blog">
+                <a href="lorem-ipsum.html"><h2>Lorem Ipsum</h2>
+                <p>Lorem ipsum dolor sit amet</p></a>
+            </div>
+            <div class="blog">
+                <a href=""><h2>Blog Post 1</h2>
+                <p>Lorem ipsum dolor sit amet</p></a>
+            </div>
+        </div>    
+    </main>
+
+</body>
+</html>
