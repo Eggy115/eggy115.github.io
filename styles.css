@@ -119,6 +119,7 @@ main {
 #length:hover {
     color: #4caf50; /* Set the link text color to yellow when hovering */
     animation: changeHue 10s infinite alternate;
+    border-color: #4caf50;
 }
 
     /* Style the number input to hide the spinners */
