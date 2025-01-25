@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="muggleton.xyz">
+    <meta name="author" content="Oliver George Talbot Muggleton">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://muggleton.xyz/images/256.png" type="image/png">
+    <title>muggleton.xyz</title>
+    <link rel="stylesheet" href="https://muggleton.xyz/styles.css">
+    <base href="https://muggleton.xyz/">
+    <style>
+        .blogs-container {
+            flex: 1 0 1000px; /* Allow the blogs to grow, but not shrink below 600px */
+            max-width: 1000px; /* Limit the width of the blog container */
+            display: flex;
+            flex-direction: column;
+        }   
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/index.html" class="exception-link"><span title="https://muggleton.xyz">muggleton.xyz</span></a></h1>
+    </header>
+    <main>
+        <div class="blogs-container">
+            <div class="blog">
+                <h2>WikiRandom</h2>
+                <p id="summary">Loading... <noscript>you have Javascript disabled</noscript></p>
+                <button class="button" onclick="fetchRandomPage()">Get Another Random Page</button>
+        </div>      
+    </main>
+
+</body>
+</html>
+
+<script>
+    function fetchRandomPage() {
+        const apiUrl = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
+        
+        // Fetch the random page summary from Wikipedia API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Extract the page title and summary
+                const title = data.title;
+                const summary = data.extract;
+                const pageUrl = data.content_urls.desktop.page;
+
+                // Update the page content
+                document.getElementById('summary').innerHTML = `
+                    <strong>${title}</strong><br><br>
+                    ${summary}<br><br>
+                    <a href="${pageUrl}" target="_blank">Read more on Wikipedia</a>
+                `;
+            })
+            .catch(error => {
+                console.error('Error fetching Wikipedia page:', error);
+                const berror = error;
+                document.getElementById('summary').innerHTML = `<p>Failed to fetch a random page. ${berror}</p><p>This is probably a connection issue (not being connected to the Internet, Wikipedia being blocked, etc.) Check the console (probably CTRL + SHIFT + I) for details</p>`;
+            });
+    }
+
+    // Load the first random page on page load
+    fetchRandomPage();
+</script>

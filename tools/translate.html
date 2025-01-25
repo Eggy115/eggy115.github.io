@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Google Translate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+        #google_translate_element {
+            margin-top: 20px;
+        }
+        .output-box {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Translate Text Using Google Translate</h1>
+
+<form id="translate-form">
+    <label for="textInput">Enter text to translate:</label><br>
+    <textarea id="textInput" required></textarea><br>
+
+    <label for="targetLang">Choose a language:</label>
+    <select id="targetLang">
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="it">Italian</option>
+        <option value="ja">Japanese</option>
+        <option value="zh-CN">Chinese (Simplified)</option>
+    </select><br>
+
+    <button type="submit">Translate</button>
+</form>
+
+<div id="translated-output" class="output-box"></div>
+
+<!-- Google Translate Widget -->
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+    // Function to initialize Google Translate Widget
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',  // Default language of your page
+            includedLanguages: 'es,fr,de,it,ja,zh-CN', // Languages to show in the dropdown
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+
+    // Load Google Translate Script
+    (function() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.body.appendChild(script);
+    })();
+
+    // Handling the translation form submission
+    document.getElementById('translate-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        var textInput = document.getElementById('textInput').value;
+        var targetLang = document.getElementById('targetLang').value;
+        
+        // Show loading message
+        document.getElementById('translated-output').innerHTML = 'Translating...';
+
+        // Wait for the Google Translate widget to be initialized
+        setTimeout(function() {
+            // Check if Google Translate API is available
+            if (window.google && window.google.translate) {
+                // Simulate translation process using Google Translate API
+                var translateElement = new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'es,fr,de,it,ja,zh-CN',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                });
+
+                // Use Google Translate's internal translation feature
+                // Translate the text dynamically using the widget
+                var translatedText = google.translate.TranslateElement.prototype.translate(textInput, targetLang);
+
+                // Display the translated text (show only the result)
+                document.getElementById('translated-output').innerHTML = translatedText;
+            } else {
+                document.getElementById('translated-output').innerHTML = 'Google Translate is not available.';
+            }
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>
