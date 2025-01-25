@@ -102,6 +102,7 @@ main {
 }
 
 .button:hover {
+    border-color: #4caf50;
     color: #4caf50; /* Set the link text color to yellow when hovering */
     animation: changeHue 10s infinite alternate;
 }
