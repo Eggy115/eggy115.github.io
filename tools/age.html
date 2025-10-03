@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="muggleton.xyz">
+    <meta name="author" content="Oliver George Talbot Muggleton">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://muggleton.xyz/images/256.png" type="image/png">
+    <title>muggleton.xyz</title>
+    <link rel="stylesheet" href="https://muggleton.xyz/styles.css">
+    <base href="https://muggleton.xyz/">
+
+    <style>
+        /* Style the input field */
+        input[type="date"] {
+    background-color: #292929; /* Use the same background color as the profile */
+    color: white;
+    padding: 9px;
+    text-align: justify;
+    margin-bottom: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+        }
+    
+        /* Style the input when focused */
+        input[type="date"]:hover {
+            border-color: #4caf50;
+            color: #4caf50; /* Set the link text color to yellow when hovering */
+            animation: changeHue 10s infinite alternate;
+        }
+
+        .blogs-container {
+            flex: 1 0 1000px; /* Allow the blogs to grow, but not shrink below 600px */
+            max-width: 800px; /* Limit the width of the blog container */
+            display: flex;
+            flex-direction: column;
+        }    
+        </style>    
+
+</head>
+<body>
+    <header>
+        <h1><a href="/index.html" class="exception-link"><span title="https://muggleton.xyz">muggleton.xyz</span></a></h1>
+    </header>
+
+
+    <main>
+        <div class="blogs-container">
+            <div class="blog">
+                <h2>Age Calculator</h2>
+                <p>I know my birthday pretty well. Most of the time, I can remember the year I was born <i>and</i> the month. However, sometimes, I can't remember how old I am.</p>
+                <p>After consulting many of my friends, I found they had the same problem. Use this page to calculate how old you are.</p>                
+                <label for="birthdate">Enter your birthdate (DD/MM/YYYY):</label>
+                
+                <input type="date" id="birthdate" required>
+                <button onclick="startLiveUpdate()" class="button">Calculate Age</button>
+              
+                <div id="result"></div>
+        </div>      
+    </main> 
+
+  <script>
+    let birthdate;  // To store the user's birthdate
+    let interval;   // To store the setInterval reference
+
+    function startLiveUpdate() {
+      // Get the birthdate value from the input field
+      const birthdateInput = document.getElementById("birthdate").value;
+
+      if (!birthdateInput) {
+        alert("Please select a valid birthdate.");
+        return;
+      }
+
+      // Convert the input value to a Date object (in UK format)
+      const birthdateParts = birthdateInput.split("-");
+      birthdate = new Date(`${birthdateParts[0]}-${birthdateParts[1]}-${birthdateParts[2]}`);
+
+      // Start updating the age calculation live
+      if (interval) {
+        clearInterval(interval);  // Clear any previous interval
+      }
+      interval = setInterval(updateAge);  // Update every second
+    }
+
+    function updateAge() {
+      const today = new Date();
+
+      // Calculate the age in years
+      let age = today.getFullYear() - birthdate.getFullYear();
+      const monthDifference = today.getMonth() - birthdate.getMonth();
+
+      // If the current month is before the birth month, subtract a year
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthdate.getDate())) {
+        age--;
+      }
+
+      // Calculate the number of months
+      let months = today.getMonth() - birthdate.getMonth();
+      if (months < 0) {
+        months += 12;
+      }
+
+      // Calculate the number of days
+      let days = today.getDate() - birthdate.getDate();
+      if (days < 0) {
+        const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 0);
+        days += lastMonth.getDate();
+      }
+
+      // Calculate weeks
+      const totalDays = Math.floor((today - birthdate) / (1000 * 60 * 60 * 24));
+      const weeks = (totalDays / 7).toFixed(2);
+      const fortnights = (totalDays / 14).toFixed(2);
+      const months2 = (totalDays / 31).toFixed(2);
+      const lunarmonths = (totalDays / 29.53).toFixed(2);
+      const quarters = (totalDays / 91.25).toFixed(2);
+      const years = (totalDays / 365).toFixed(2);
+      const dogyears = (totalDays / 52.14).toFixed(2);
+      const decades = (totalDays / 3650).toFixed(2);
+      const centuries = (totalDays / 36500).toFixed(2);
+      const millenia = (totalDays / 365000).toFixed(2);
+
+      // Calculate hours, minutes, seconds
+      const totalHours = Math.floor((today - birthdate) / (1000 * 60 * 60));      
+      const totalMinutes = Math.floor((today - birthdate) / (1000 * 60));
+      const totalSeconds = Math.floor((today - birthdate) / 1000);
+      const miliseconds = Math.floor((today - birthdate));
+
+      const childrenRaised = Math.floor(totalDays / 365 / 18);
+      const treesGrown = Math.floor(totalDays / 365 / 10);
+      const degreesCompleted = Math.floor(totalDays / 365 / 3);
+      const instrumentsLearned = Math.floor(totalDays / 365 * 2);
+      const skillsMastered = Math.floor(totalHours / 10000);
+      const booksRead = Math.floor(totalHours / 6);
+      const matharonsRan = Math.floor(totalHours / 2);
+      const friendsWatched = Math.floor(totalMinutes / 5192);
+      const ricksListened = Math.floor(totalSeconds / 213);
+      const sprintsRan = Math.floor(totalSeconds / 9.58);
+
+      // Display the result
+      const resultElement = document.getElementById("result");
+      resultElement.innerHTML = `
+        You are ${age} year(s), ${months} month(s), and ${days} day(s) old.<br>
+        <br><b>This is equivalent to</b><br><br>
+        ${miliseconds} miliseconds<br>
+        ${totalSeconds} seconds<br>
+        ${totalMinutes} minutes<br>        
+        ${totalHours} hours<br>
+        ${weeks} weeks<br>
+        ${fortnights} fortnights<br>
+        ${lunarmonths} lunar months<br>
+        ${months2} months<br>
+        ${dogyears} dog years<br>
+        ${quarters} quarters<br>
+        ${years} years (duh)<br>
+        ${decades} decades<br>
+        ${centuries} centuries<br>
+        ${millenia} millenia<br>
+        0.00 eternities<br>
+        <br><b>During this time, you could have</b><br><br>
+        Raised ${childrenRaised} children (independently of each other)<br>
+        Planted and watched ${treesGrown} trees grow separately<br>
+        Completed ${degreesCompleted} degrees<br>
+        Mastered ${skillsMastered} skills<br>
+        Learned to play ${instrumentsLearned} musical instruments<br>
+        Watched <i>Friends</i> ${friendsWatched} times<br>
+        Read ${booksRead} books<br>
+        Ran ${matharonsRan} world-record marathons<br>
+        Listened to <i>Never Gonna Give You Up</i> by Rick Astley ${ricksListened} times<br>
+        Ran ${sprintsRan} world-record 100m sprints<br>
+      `;
+    }
+  </script>
+
+</body>
+</html>
