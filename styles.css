@@ -1,17 +1,14 @@
-/* Style the custom scrollbar for Webkit-based browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #1a1a1a ; /* Track color */
+    background: #1a1a1a ; 
 }
 ::-webkit-scrollbar-thumb {
-    background: #444; /* Thumb color */
-    border-radius: 5px; /* Rounded corners */
+    background: #444; 
+    border-radius: 5px; 
 }
-/* Style the custom scrollbar for Firefox */
-/* Note that the scrollbar in Firefox can only be styled using the scrollbar-width property, which is not widely supported yet (as of my knowledge cutoff in September 2021) */
-/* This example might not work in all versions of Firefox */
+
 * {
     scrollbar-width: thin;
     scrollbar-color: #444 #1a1a1a;
@@ -20,36 +17,35 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1a1a1a; /* Dark background color */
-    color: #ffffff; /* Light text color */
+    background-color: #1a1a1a;  
+    color: #ffffff;  
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Make the body take up at least the full viewport height */
-}
+    min-height: 100vh; 
 header, footer{
-    background-color: #4caf50; /* Green header and footer background color */
+    background-color: #4caf50;   
     padding: 10px;
     color: #ffffff;
     text-align: center;
-    animation: changeHue 10s infinite alternate; /* Apply the hue animation */
+    animation: changeHue 10s infinite alternate;   
 }
 @keyframes changeHue {
     0% {
-        filter: hue-rotate(0deg); /* Starting hue rotation value */
+        filter: hue-rotate(0deg);  
     }
     100% {
-        filter: hue-rotate(360deg); /* Ending hue rotation value (360deg for a full cycle) */
+        filter: hue-rotate(360deg);  
     }
 }
 main {
-    display: flex; /* Use flexbox to create a two-column layout */
+    display: flex; 
     max-width: 1050px;
     margin: 20px auto;
-    flex-wrap: wrap; /* Allow elements to wrap within the flex container */
-    justify-content: space-between; /* Align items at the edges */
+    flex-wrap: wrap;  
+    justify-content: space-between;  
 }
 .profile {
-    flex: 1 0 250px; /* Allow the profile to grow, but not shrink below 250px */
+    flex: 1 0 250px; 
     display: flex;
     flex-direction: column;
     margin-bottom: 20px; 
@@ -57,7 +53,7 @@ main {
 .profile-inner,
 .blog {
     padding: 20px;
-    background-color: #292929; /* Darker content background color */
+    background-color: #292929;   
     border: 1px solid #444;
     border-radius: 5px;
     margin-bottom: 20px; 
@@ -76,14 +72,14 @@ main {
     margin: 5px 0;
 }
 .blogs-container {
-    flex: 1 0 600px; /* Allow the blogs to grow, but not shrink below 600px */
-    max-width: 600px; /* Limit the width of the blog container */
-    margin-left: 20px; /* Add some space between the profile and blogs */
+    flex: 1 0 600px;  
+    max-width: 600px;  
+    margin-left: 20px;  
     display: flex;
     flex-direction: column;
 }
 .blog {
-    background-color: #292929; /* Use the same background color as the profile */
+    background-color: #292929;   
     color: white;
     padding: 20px;
     text-align: justify;
@@ -92,7 +88,7 @@ main {
     border-radius: 5px;
 }
 .button {
-    background-color: #292929; /* Use the same background color as the profile */
+    background-color: #292929;   
     color: white;
     padding: 10px;
     text-align: justify;
@@ -103,11 +99,11 @@ main {
 
 .button:hover {
     border-color: #4caf50;
-    color: #4caf50; /* Set the link text color to yellow when hovering */
+    color: #4caf50;  
     animation: changeHue 10s infinite alternate;
 }
 #length {
-    background-color: #292929; /* Use the same background color as the profile */
+    background-color: #292929;   
     color: white;
     padding: 10px;
     text-align: justify;
@@ -117,19 +113,19 @@ main {
 }
 
 #length:hover {
-    color: #4caf50; /* Set the link text color to yellow when hovering */
+    color: #4caf50;  
     animation: changeHue 10s infinite alternate;
     border-color: #4caf50;
 }
 
-    /* Style the number input to hide the spinners */
+     input to hide the spinners 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-/* For Firefox */
+
 input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
@@ -138,26 +134,25 @@ input[type="number"] {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #4caf50; /* Green footer background color */
+    background-color: #4caf50;   
     color: #fff;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    display: block; /* Initially show the footer */
-    transition: transform 0.3s ease-in-out; /* Add smooth transition when showing/hiding */
+    display: block;   
+    transition: transform 0.3s ease-in-out;   
 }
 .footer-hidden {
-    transform: translateY(100%); /* Move the footer outside the viewport */
+    transform: translateY(100%);   
 }
 a {
-    color: white; /* Set the link text color to white */
-    text-decoration: none; /* Remove the default underline */
+    color: white;
+    text-decoration: none; 
 }
         
-/* Apply styles when hovering over the link */
 a:hover {
-    color: #4caf50; /* Set the link text color to yellow when hovering */
+    color: #4caf50;  
     animation: changeHue 10s infinite alternate;
     border-color: #4caf50;
 }
@@ -172,13 +167,13 @@ a:hover {
     animation: changeHue 10s infinite alternate;
 }    
 .exception-link {
-    color: white; /* Change the color for the exception links */
+    color: white; 
 }
 .exception-link:hover {
-    color: white; /* Change the color for hovered exception links */ /* Add underline for hovered exception links */
-    animation: none; /* Remove animation for hovered exception links */
+    color: white;  
+    animation: none;  
 } 
-/* styles.css */
+
 #scrollToTopBtn {
     position: fixed;
     bottom: 20px;
@@ -198,4 +193,17 @@ a:hover {
     background-color: #444444;
     color: #4caf50;
     animation: changeHue 10s infinite alternate;
-  }
+  }}
+
+.secret-link {
+    color: inherit;
+    text-decoration: none;
+    border: none;
+}
+
+.secret-link:hover {
+    color: inherit;
+    text-decoration: none;
+    border: none;
+    animation: none;
+}
