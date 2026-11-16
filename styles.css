@@ -118,7 +118,6 @@ main {
     border-color: #4caf50;
 }
 
-     input to hide the spinners 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -193,7 +192,7 @@ a:hover {
     background-color: #444444;
     color: #4caf50;
     animation: changeHue 10s infinite alternate;
-  }}
+  }
 
 .secret-link {
     color: inherit;
@@ -206,4 +205,4 @@ a:hover {
     text-decoration: none;
     border: none;
     animation: none;
-}
+}}
